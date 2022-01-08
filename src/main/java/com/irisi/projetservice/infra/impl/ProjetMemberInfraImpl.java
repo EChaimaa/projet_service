@@ -2,44 +2,73 @@ package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.ProjetMemberPojo;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
+import com.irisi.projetservice.infra.dao.EmployeDao;
+import com.irisi.projetservice.infra.dao.ProjetDao;
+import com.irisi.projetservice.infra.dao.ProjetMemberDao;
+import com.irisi.projetservice.infra.entity.EmployeEntity;
+import com.irisi.projetservice.infra.entity.ProjetEntity;
 import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
 import com.irisi.projetservice.infra.facade.ProjetMemberInfra;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProjetMemberInfraImpl extends AbstractInfraImpl implements ProjetMemberInfra {
-    @Override
-    public ProjetMemberPojo findByReference(String reference) {
-        return null;
-    }
+    @Autowired
+    ProjetMemberDao projetMemberDao;
+    @Autowired
+    ProjetDao projetDao;
+    @Autowired
+    EmployeDao employeDao;
 
     @Override
-    public int deleteByReference(String reference) {
-        return 0;
+    public ProjetMemberPojo findByProjetAndEmploye(String referenceProjet, String matriculeEmploye) {
+        ProjetEntity projetEntity = projetDao.findByReference(referenceProjet);
+        EmployeEntity employeEntity = employeDao.findByMatricule(matriculeEmploye);
+        ProjetMemberEntity projetMemberEntity = projetMemberDao.findByProjetReferenceAndEmployeMatricule(referenceProjet, matriculeEmploye);
+        if(projetEntity == null|| employeEntity == null){
+            return null;
+        }
+        ProjetMemberPojo projetMemberPojo = new ProjetMemberPojo();
+        BeanUtils.copyProperties(projetMemberEntity, projetMemberPojo);
+        return projetMemberPojo;
     }
 
     @Override
     public ProjetMemberEntity save(ProjetMemberEntity projetMemberEntity) {
-        return null;
+        if (projetMemberDao.findById(projetMemberEntity.getId()) != null) {
+            return null;
+        }
+        return projetMemberDao.save(projetMemberEntity);
     }
 
     @Override
     public ProjetMemberEntity save(ProjetMemberPojo projetMemberPojo) {
-        return null;
+        ProjetMemberEntity projetMemberEntity = new ProjetMemberEntity();
+        BeanUtils.copyProperties(projetMemberPojo, projetMemberEntity);
+        return save(projetMemberEntity);
     }
 
     @Override
     public ProjetMemberEntity update(ProjetMemberEntity projetMemberEntity) {
-        return null;
+        if (projetMemberDao.findById(projetMemberEntity.getId()) == null) {
+            return null;
+        }
+        return projetMemberDao.save(projetMemberEntity);
     }
 
     @Override
     public ProjetMemberEntity update(ProjetMemberPojo projetMemberPojo) {
-        return null;
+        ProjetMemberEntity projetMemberEntity = new ProjetMemberEntity();
+        BeanUtils.copyProperties(projetMemberPojo, projetMemberEntity);
+        return update(projetMemberEntity);
     }
 
     @Override
     public List<ProjetMemberEntity> findAll() {
-        return null;
+        return projetMemberDao.findAll();
     }
 }

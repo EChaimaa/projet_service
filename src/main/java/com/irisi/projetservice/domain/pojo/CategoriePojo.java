@@ -3,7 +3,7 @@ package com.irisi.projetservice.domain.pojo;
 public class CategoriePojo {
     private Long id;
     private String libelle;
-    private int salaireParJour;
+    private int salaireParHeure;
 
     public Long getId() {
         return id;
@@ -21,11 +21,11 @@ public class CategoriePojo {
         this.libelle = libelle;
     }
 
-    public int getSalaireParJour() {
-        return salaireParJour;
+    public int getSalaireParHeure() {
+        return salaireParHeure;
     }
 
-    public void setSalaireParJour(int salaireParJour) {
-        this.salaireParJour = salaireParJour;
+    public void setSalaireParHeure(int salaireParHeure) {
+        this.salaireParHeure = salaireParHeure;
     }
 }

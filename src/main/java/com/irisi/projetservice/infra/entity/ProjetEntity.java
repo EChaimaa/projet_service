@@ -18,7 +18,7 @@ public class ProjetEntity {
     private String reference;
     @ManyToOne
     private ClientEntity client;
-    @ManyToMany
+    @OneToMany
     private List<ProjetMemberEntity> projetMembers;
 
     public Long getId() {

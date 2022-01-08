@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientDao extends JpaRepository<ClientEntity, Long> {
     ClientEntity findByReference(String reference);
+    int deleteByReference(String reference);
 }

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategorieDao extends JpaRepository<CategorieEntity, Long> {
     CategorieEntity findByLibelle(String libelle);
+    int deleteByLibelle(String libelle);
 }

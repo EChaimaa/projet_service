@@ -18,7 +18,7 @@ public class CategorieEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle;
-    private int salaireParJour;
+    private int salaireParHeure;
 
     public Long getId() {
         return id;
@@ -37,10 +37,10 @@ public class CategorieEntity {
     }
 
     public int getsalaireParJour() {
-        return salaireParJour;
+        return salaireParHeure;
     }
 
     public void setsalaireParJour(int salaireParJour) {
-        this.salaireParJour = salaireParJour;
+        this.salaireParHeure = salaireParJour;
     }
 }

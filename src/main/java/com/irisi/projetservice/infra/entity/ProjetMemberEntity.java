@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,9 +15,13 @@ public class ProjetMemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
+    @ManyToOne
     private EmployeEntity employe;
-    private int nbrJour;
+    @ManyToOne
+    private ProjetEntity projet;
+    private int nbrHeures;
+    @OneToMany
+    private List<projetDetailEntity> workDetails;
 
     public Long getId() {
         return id;
@@ -34,11 +39,27 @@ public class ProjetMemberEntity {
         this.employe = employe;
     }
 
-    public int getNbrJour() {
-        return nbrJour;
+    public ProjetEntity getProjet() {
+        return projet;
     }
 
-    public void setNbrJour(int nbrJour) {
-        this.nbrJour = nbrJour;
+    public void setProjet(ProjetEntity projet) {
+        this.projet = projet;
+    }
+
+    public int getNbrHeures() {
+        return nbrHeures;
+    }
+
+    public void setNbrHeures(int nbrHeures) {
+        this.nbrHeures = nbrHeures;
+    }
+
+    public List<projetDetailEntity> getWorkDetails() {
+        return workDetails;
+    }
+
+    public void setWorkDetails(List<projetDetailEntity> workDetails) {
+        this.workDetails = workDetails;
     }
 }

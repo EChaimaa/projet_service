@@ -7,9 +7,8 @@ import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
 import java.util.List;
 
 public interface ProjetMemberInfra extends AbstractInfra {
-    ProjetMemberPojo findByReference(String reference);
 
-    int deleteByReference(String reference);
+    ProjetMemberPojo findByProjetAndEmploye(String referenceProjet, String matriculeEmploye);
 
     ProjetMemberEntity save(ProjetMemberEntity projetMemberEntity);
 

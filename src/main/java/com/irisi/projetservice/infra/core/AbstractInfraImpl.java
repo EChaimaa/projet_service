@@ -1,6 +1,6 @@
 package com.irisi.projetservice.infra.core;
 
-import com.irisi.facturationservice.infra.core.messaging.LocalMessageReader;
+import com.irisi.projetservice.infra.core.messaging.LocalMessageReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ public class AbstractInfraImpl {
     private LocalMessageReader localMessageReader;
 
     public String getMessage(String code) {
-        String message= localMessageReader.getMessage(code);
+        String message = localMessageReader.getMessage(code);
         return message;
     }
 }

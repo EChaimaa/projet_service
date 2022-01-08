@@ -7,9 +7,9 @@ import com.irisi.projetservice.infra.entity.CategorieEntity;
 import java.util.List;
 
 public interface CategorieInfra extends AbstractInfra {
-    CategoriePojo findByReference(String reference);
+    CategoriePojo findByLibelle(String libelle);
 
-    int deleteByReference(String reference);
+    int deleteByLibelle(String libelle);
 
     CategorieEntity save(CategorieEntity categorieEntity);
 

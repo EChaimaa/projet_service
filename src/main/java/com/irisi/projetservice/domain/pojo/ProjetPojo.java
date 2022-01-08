@@ -1,5 +1,6 @@
 package com.irisi.projetservice.domain.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjetPojo {
