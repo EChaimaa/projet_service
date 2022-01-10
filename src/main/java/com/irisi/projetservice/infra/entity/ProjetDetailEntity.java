@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class projetDetailEntity {
+public class ProjetDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,7 +18,6 @@ public class projetDetailEntity {
     private Date endTime;
     @ManyToOne
     private ProjetMemberEntity projetMember;
-    @Id
 
     public Date getBeginTime() {
         return beginTime;

@@ -6,8 +6,8 @@ public class ProjetMemberPojo {
     private Long id;
     private EmployePojo employe;
     private ProjetPojo projet;
-    private int nbrHeures;
-    private List<projetDetailPojo> projetDetails;
+    private long nbrHeures;
+    private List<ProjetDetailPojo> projetDetails;
 
     public Long getId() {
         return id;
@@ -33,19 +33,19 @@ public class ProjetMemberPojo {
         this.projet = projet;
     }
 
-    public int getNbrHeures() {
+    public long getNbrHeures() {
         return nbrHeures;
     }
 
-    public void setNbrHeures(int nbrHeures) {
+    public void setNbrHeures(long nbrHeures) {
         this.nbrHeures = nbrHeures;
     }
 
-    public List<projetDetailPojo> getprojetDetails() {
+    public List<ProjetDetailPojo> getprojetDetails() {
         return projetDetails;
     }
 
-    public void setprojetDetails(List<projetDetailPojo> projetDetails) {
+    public void setprojetDetails(List<ProjetDetailPojo> projetDetails) {
         this.projetDetails = projetDetails;
     }
 }

@@ -19,9 +19,9 @@ public class ProjetMemberEntity {
     private EmployeEntity employe;
     @ManyToOne
     private ProjetEntity projet;
-    private int nbrHeures;
+    private long nbrHeures;
     @OneToMany
-    private List<projetDetailEntity> workDetails;
+    private List<ProjetDetailEntity> workDetails;
 
     public Long getId() {
         return id;
@@ -47,19 +47,19 @@ public class ProjetMemberEntity {
         this.projet = projet;
     }
 
-    public int getNbrHeures() {
+    public long getNbrHeures() {
         return nbrHeures;
     }
 
-    public void setNbrHeures(int nbrHeures) {
+    public void setNbrHeures(long nbrHeures) {
         this.nbrHeures = nbrHeures;
     }
 
-    public List<projetDetailEntity> getWorkDetails() {
+    public List<ProjetDetailEntity> getWorkDetails() {
         return workDetails;
     }
 
-    public void setWorkDetails(List<projetDetailEntity> workDetails) {
+    public void setWorkDetails(List<ProjetDetailEntity> workDetails) {
         this.workDetails = workDetails;
     }
 }

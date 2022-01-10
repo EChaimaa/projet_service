@@ -1,13 +1,20 @@
 package com.irisi.projetservice.domain.pojo;
 
-import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
-
 import java.util.Date;
 
-public class projetDetailPojo {
+public class ProjetDetailPojo {
     private Date beginTime;
     private Date endTime;
     private ProjetMemberPojo projetMember;
+
+    public ProjetDetailPojo() {
+    }
+
+    public ProjetDetailPojo(Date beginTime, Date endTime, ProjetMemberPojo projetMember) {
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        this.projetMember = projetMember;
+    }
 
     public Date getBeginTime() {
         return beginTime;
