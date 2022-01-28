@@ -1,6 +1,7 @@
 package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.ProjetMemberPojo;
+import com.irisi.projetservice.infra.converter.ProjetMemberConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
 import com.irisi.projetservice.infra.dao.EmployeDao;
 import com.irisi.projetservice.infra.dao.ProjetDao;
@@ -46,10 +47,11 @@ public class ProjetMemberInfraImpl extends AbstractInfraImpl implements ProjetMe
     }
 
     @Override
-    public ProjetMemberEntity save(ProjetMemberPojo projetMemberPojo) {
-        ProjetMemberEntity projetMemberEntity = new ProjetMemberEntity();
-        BeanUtils.copyProperties(projetMemberPojo, projetMemberEntity);
-        return save(projetMemberEntity);
+    public ProjetMemberPojo save(ProjetMemberPojo projetMemberPojo) {
+        ProjetMemberConverter projetMemberConverter = new ProjetMemberConverter();
+        ProjetMemberEntity projetMemberEntity = projetMemberConverter.toEntity(projetMemberPojo);
+        ProjetMemberPojo projetMember = projetMemberConverter.toPojo(save(projetMemberEntity));
+        return projetMember;
     }
 
     @Override

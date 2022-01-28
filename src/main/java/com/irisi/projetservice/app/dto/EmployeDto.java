@@ -6,7 +6,7 @@ public class EmployeDto {
     private String nom;
     private String prenom;
     private String matricule;
-    private CategorieDto categorieDto;
+    private CategorieDto categorie;
 
     public Long getId() {
         return id;
@@ -40,11 +40,11 @@ public class EmployeDto {
         this.matricule = matricule;
     }
 
-    public CategorieDto getCategorieDto() {
-        return categorieDto;
+    public CategorieDto getCategorie() {
+        return categorie;
     }
 
-    public void setCategorieDto(CategorieDto categorieDto) {
-        this.categorieDto = categorieDto;
+    public void setCategorie(CategorieDto categorie) {
+        this.categorie = categorie;
     }
 }

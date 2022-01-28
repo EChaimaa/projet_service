@@ -6,7 +6,7 @@ public class ProjetDetailDto {
     private Long id;
     private Date beginTime;
     private Date endTime;
-    private ProjetMemberDto projetMemberDto;
+    private ProjetMemberDto projetMember;
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class ProjetDetailDto {
         this.endTime = endTime;
     }
 
-    public ProjetMemberDto getProjetMemberDto() {
-        return projetMemberDto;
+    public ProjetMemberDto getProjetMember() {
+        return projetMember;
     }
 
-    public void setProjetMemberDto(ProjetMemberDto projetMemberDto) {
-        this.projetMemberDto = projetMemberDto;
+    public void setProjetMember(ProjetMemberDto projetMember) {
+        this.projetMember = projetMember;
     }
 }

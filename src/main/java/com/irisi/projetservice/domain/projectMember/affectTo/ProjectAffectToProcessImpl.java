@@ -1,4 +1,4 @@
-package com.irisi.projetservice.domain.projet.affect;
+package com.irisi.projetservice.domain.projectMember.affectTo;
 
 import com.irisi.projetservice.domain.core.AbstractProcessImpl;
 import com.irisi.projetservice.domain.core.Result;
@@ -22,20 +22,37 @@ public class ProjectAffectToProcessImpl extends AbstractProcessImpl<ProjectAffec
 
     @Override
     public void validate(ProjectAffectToInput abstractProcessInput, Result result) {
-        EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getMatriculeEmploye());
-        ProjetPojo projet = projetInfra.findByReference(abstractProcessInput.getReferenceProjet());
+        String matricule = abstractProcessInput.getProjetMember().getEmploye().getMatricule();
+        String reference = abstractProcessInput.getProjetMember().getProjet().getReference();
 
-        if(projetMemberInfra.findByProjetAndEmploye(projet.getReference(), employe.getMatricule()) != null){
+        EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getProjetMember().getEmploye().getMatricule());
+        ProjetPojo projet = projetInfra.findByReference(abstractProcessInput.getProjetMember().getProjet().getReference());
+        ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(reference, matricule);
+
+        if (projetMember != null && projetMember.getId() != null) {
             result.addErrorMessage("projet.affectTo.projetMember_already_exists");
+        }
+
+        if (employe == null) {
+            result.addErrorMessage("projet.affectTo.employe_not_found");
+        }
+
+        if (projet == null) {
+            result.addErrorMessage("projet.affectTo.projet_not_found");
         }
     }
 
     @Override
     public void run(ProjectAffectToInput abstractProcessInput, Result result) {
-        EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getMatriculeEmploye());
-        ProjetPojo projet = projetInfra.findByReference(abstractProcessInput.getReferenceProjet());
+        EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getProjetMember().getEmploye().getMatricule());
+        ProjetPojo projet = projetInfra.findByReference(abstractProcessInput.getProjetMember().getProjet().getReference());
+
         ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(projet.getReference(), employe.getMatricule());
+
+        projetMember.setEmploye(employe);
+        projetMember.setProjet(projet);
         projetMember.setNbrHeures(0);
+
         projetMemberInfra.save(projetMember);
         result.addInfoMessage("projet.affectTo.projetMember_created");
     }

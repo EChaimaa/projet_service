@@ -1,55 +1,35 @@
 package com.irisi.projetservice.infra.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Data
 @Entity
 public class ProjetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reference;
+    private String name;
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date beginTime;
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endTime;
     @ManyToOne
     private ClientEntity client;
     @OneToMany
     private List<ProjetMemberEntity> projetMembers;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
-    public ClientEntity getClient() {
-        return client;
-    }
-
-    public void setClient(ClientEntity client) {
-        this.client = client;
-    }
-
-    public List<ProjetMemberEntity> getProjetMembers() {
-        return projetMembers;
-    }
-
-    public void setProjetMembers(List<ProjetMemberEntity> projetMembers) {
-        this.projetMembers = projetMembers;
-    }
 }

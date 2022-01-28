@@ -37,4 +37,14 @@ public class ClientPojo {
     public void setReference(String reference) {
         this.reference = reference;
     }
+
+    @Override
+    public String toString() {
+        return "ClientPojo{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", reference='" + reference + '\'' +
+                '}';
+    }
 }

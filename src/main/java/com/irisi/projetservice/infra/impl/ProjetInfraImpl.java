@@ -1,8 +1,10 @@
 package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.ProjetPojo;
+import com.irisi.projetservice.infra.converter.ProjetConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
 import com.irisi.projetservice.infra.dao.ProjetDao;
+import com.irisi.projetservice.infra.entity.ClientEntity;
 import com.irisi.projetservice.infra.entity.ProjetEntity;
 import com.irisi.projetservice.infra.facade.ProjetInfra;
 import org.springframework.beans.BeanUtils;
@@ -41,10 +43,11 @@ public class ProjetInfraImpl extends AbstractInfraImpl implements ProjetInfra {
     }
 
     @Override
-    public ProjetEntity save(ProjetPojo projetPojo) {
-        ProjetEntity projetEntity = new ProjetEntity();
-        BeanUtils.copyProperties(projetPojo, projetEntity);
-        return save(projetEntity);
+    public ProjetPojo save(ProjetPojo projetPojo) {
+        ProjetConverter projetConverter = new ProjetConverter();
+        ProjetEntity projetEntity = projetConverter.toEntity(projetPojo);
+        ProjetPojo projet = projetConverter.toPojo(save(projetEntity));
+        return projet;
     }
 
     @Override

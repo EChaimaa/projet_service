@@ -12,7 +12,7 @@ public interface ProjetMemberInfra extends AbstractInfra {
 
     ProjetMemberEntity save(ProjetMemberEntity projetMemberEntity);
 
-    ProjetMemberEntity save(ProjetMemberPojo projetMemberPojo);
+    ProjetMemberPojo save(ProjetMemberPojo projetMemberPojo);
 
     ProjetMemberEntity update(ProjetMemberEntity projetMemberEntity);
 

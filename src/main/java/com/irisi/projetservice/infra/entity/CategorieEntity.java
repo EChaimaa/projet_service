@@ -36,11 +36,11 @@ public class CategorieEntity {
         this.libelle = libelle;
     }
 
-    public int getsalaireParJour() {
+    public int getSalaireParHeure() {
         return salaireParHeure;
     }
 
-    public void setsalaireParJour(int salaireParJour) {
-        this.salaireParHeure = salaireParJour;
+    public void setSalaireParHeure(int salaireParHeure) {
+        this.salaireParHeure = salaireParHeure;
     }
 }

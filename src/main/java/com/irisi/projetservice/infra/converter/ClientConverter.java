@@ -1,12 +1,11 @@
-package com.irisi.projetservice.app.converter;
+package com.irisi.projetservice.infra.converter;
 
-import com.irisi.projetservice.app.dto.ClientDto;
 import com.irisi.projetservice.domain.pojo.ClientPojo;
 import com.irisi.projetservice.infra.entity.ClientEntity;
 
-public class ClientMapper extends AbstractMapper<ClientPojo, ClientDto>{
+public class ClientConverter extends AbstractConverter<ClientPojo, ClientEntity> {
     @Override
-    public ClientPojo toPojo(ClientDto dto) {
+    public ClientPojo toPojo(ClientEntity dto) {
         if(dto == null){
             return  null;
         }else {
@@ -20,11 +19,11 @@ public class ClientMapper extends AbstractMapper<ClientPojo, ClientDto>{
     }
 
     @Override
-    public ClientDto toDto(ClientPojo item) {
+    public ClientEntity toEntity(ClientPojo item) {
         if(item == null){
             return null;
         }else{
-            ClientDto dto = new ClientDto();
+            ClientEntity dto = new ClientEntity();
             dto.setId(item.getId());
             dto.setNom(item.getNom());
             dto.setPrenom(item.getPrenom());

@@ -15,7 +15,7 @@ public interface ProjetInfra extends AbstractInfra {
 
     ProjetEntity save(ProjetEntity projetEntity);
 
-    ProjetEntity save(ProjetPojo projetPojo);
+    ProjetPojo save(ProjetPojo projetPojo);
 
     ProjetEntity update(ProjetEntity projetEntity);
 

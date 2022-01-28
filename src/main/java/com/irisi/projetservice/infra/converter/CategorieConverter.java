@@ -1,11 +1,11 @@
-package com.irisi.projetservice.app.converter;
+package com.irisi.projetservice.infra.converter;
 
-import com.irisi.projetservice.app.dto.CategorieDto;
 import com.irisi.projetservice.domain.pojo.CategoriePojo;
+import com.irisi.projetservice.infra.entity.CategorieEntity;
 
-public class CategorieMapper extends AbstractMapper<CategoriePojo, CategorieDto>{
+public class CategorieConverter extends AbstractConverter<CategoriePojo, CategorieEntity> {
     @Override
-    public CategoriePojo toPojo(CategorieDto dto) {
+    public CategoriePojo toPojo(CategorieEntity dto) {
         if(dto == null){
             return null;
         }else {
@@ -18,11 +18,11 @@ public class CategorieMapper extends AbstractMapper<CategoriePojo, CategorieDto>
     }
 
     @Override
-    public CategorieDto toDto(CategoriePojo item) {
+    public CategorieEntity toEntity(CategoriePojo item) {
         if(item == null){
             return null;
         }
-        CategorieDto dto = new CategorieDto();
+        CategorieEntity dto = new CategorieEntity();
         dto.setId(item.getId());
         dto.setLibelle(item.getLibelle());
         dto.setSalaireParHeure(item.getSalaireParHeure());

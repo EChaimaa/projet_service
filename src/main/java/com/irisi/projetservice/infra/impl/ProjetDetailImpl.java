@@ -1,6 +1,7 @@
 package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.ProjetDetailPojo;
+import com.irisi.projetservice.infra.converter.ProjetDetailConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
 import com.irisi.projetservice.infra.dao.ProjetMemberDao;
 import com.irisi.projetservice.infra.dao.ProjetDetailDao;
@@ -40,10 +41,11 @@ public class ProjetDetailImpl extends AbstractInfraImpl implements ProjetDetailI
     }
 
     @Override
-    public ProjetDetailEntity save(ProjetDetailPojo projetDetailPojo) {
-        ProjetDetailEntity projetDetailEntity = new ProjetDetailEntity();
-        BeanUtils.copyProperties(projetDetailPojo, projetDetailEntity);
-        return save(projetDetailEntity);
+    public ProjetDetailPojo save(ProjetDetailPojo projetDetailPojo) {
+        ProjetDetailConverter projetDetailConverter = new ProjetDetailConverter();
+        ProjetDetailEntity projetDetailEntity = projetDetailConverter.toEntity(projetDetailPojo);
+        ProjetDetailPojo projetDetail = projetDetailConverter.toPojo(save(projetDetailEntity));
+        return projetDetail;
     }
 
     @Override

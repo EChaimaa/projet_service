@@ -1,6 +1,7 @@
 package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.EmployePojo;
+import com.irisi.projetservice.infra.converter.EmployeConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
 import com.irisi.projetservice.infra.dao.EmployeDao;
 import com.irisi.projetservice.infra.entity.EmployeEntity;
@@ -40,10 +41,11 @@ public class EmployeInfraImpl extends AbstractInfraImpl implements EmployeInfra 
     }
 
     @Override
-    public EmployeEntity save(EmployePojo employePojo) {
-        EmployeEntity employeEntity = new EmployeEntity();
-        BeanUtils.copyProperties(employePojo, employeEntity);
-        return save(employeEntity);
+    public EmployePojo save(EmployePojo employePojo) {
+        EmployeConverter employeConverter = new EmployeConverter();
+        EmployeEntity employeEntity = employeConverter.toEntity(employePojo);
+        EmployePojo employe = employeConverter.toPojo(save(employeEntity));
+        return employe;
     }
 
     @Override

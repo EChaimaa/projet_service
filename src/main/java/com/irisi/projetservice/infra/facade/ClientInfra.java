@@ -13,7 +13,7 @@ public interface ClientInfra extends AbstractInfra {
 
     ClientEntity save(ClientEntity clientEntity);
 
-    ClientEntity save(ClientPojo clientPojo);
+    ClientPojo save(ClientPojo clientPojo);
 
     ClientEntity update(ClientEntity clientEntity);
 

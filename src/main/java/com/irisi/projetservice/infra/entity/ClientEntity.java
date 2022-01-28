@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +18,8 @@ public class ClientEntity {
     private String nom;
     private String prenom;
     private String reference;
+    @OneToMany(mappedBy = "client")
+    private List<ProjetEntity> projets;
 
     public Long getId() {
         return id;

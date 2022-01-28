@@ -1,6 +1,7 @@
 package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.ClientPojo;
+import com.irisi.projetservice.infra.converter.ClientConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
 import com.irisi.projetservice.infra.dao.ClientDao;
 import com.irisi.projetservice.infra.entity.ClientEntity;
@@ -40,10 +41,11 @@ public class ClientInfraImpl extends AbstractInfraImpl implements ClientInfra {
     }
 
     @Override
-    public ClientEntity save(ClientPojo clientPojo) {
-        ClientEntity clientEntity = new ClientEntity();
-        BeanUtils.copyProperties(clientPojo, clientEntity);
-        return save(clientEntity);
+    public ClientPojo save(ClientPojo clientPojo) {
+        ClientConverter clientConverter = new ClientConverter();
+        ClientEntity clientEntity = clientConverter.toEntity(clientPojo);
+        ClientPojo client = clientConverter.toPojo(save(clientEntity));
+        return client;
     }
 
     @Override

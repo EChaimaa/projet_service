@@ -1,17 +1,16 @@
-package com.irisi.projetservice.app.converter;
+package com.irisi.projetservice.infra.converter;
 
-import com.irisi.projetservice.app.dto.ProjetDto;
 import com.irisi.projetservice.domain.pojo.ProjetPojo;
 import com.irisi.projetservice.infra.entity.ProjetEntity;
 
-public class ProjetMapper extends AbstractMapper<ProjetPojo, ProjetDto> {
+public class ProjetConverter extends AbstractConverter<ProjetPojo, ProjetEntity> {
     @Override
-    public ProjetPojo toPojo(ProjetDto dto) {
+    public ProjetPojo toPojo(ProjetEntity dto) {
         if (dto == null) {
             return null;
         } else {
             ProjetPojo item = new ProjetPojo();
-            ClientMapper clientMapper = new ClientMapper();
+            ClientConverter clientMapper = new ClientConverter();
             item.setId(dto.getId());
             item.setClient(clientMapper.toPojo(dto.getClient()));
             item.setReference(dto.getReference());
@@ -24,18 +23,18 @@ public class ProjetMapper extends AbstractMapper<ProjetPojo, ProjetDto> {
     }
 
     @Override
-    public ProjetDto toDto(ProjetPojo item) {
+    public ProjetEntity toEntity(ProjetPojo item) {
         if (item == null) {
             return null;
         } else {
-            ProjetDto dto = new ProjetDto();
+            ProjetEntity dto = new ProjetEntity();
             dto.setId(item.getId());
             dto.setReference(item.getReference());
             dto.setName(item.getName());
             dto.setBeginTime(item.getBeginTime());
             dto.setEndTime(item.getEndTime());
-            ClientMapper clientMapper = new ClientMapper();
-            dto.setClient(clientMapper.toDto(item.getClient()));
+            ClientConverter clientConverter = new ClientConverter();
+            dto.setClient(clientConverter.toEntity(item.getClient()));
             //projetMemebers
             return dto;
         }

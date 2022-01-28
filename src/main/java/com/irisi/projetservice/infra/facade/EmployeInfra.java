@@ -13,7 +13,7 @@ public interface EmployeInfra extends AbstractInfra {
 
     EmployeEntity save(EmployeEntity employeEntity);
 
-    EmployeEntity save(EmployePojo employePojo);
+    EmployePojo save(EmployePojo employePojo);
 
     EmployeEntity update(EmployeEntity employeEntity);
 

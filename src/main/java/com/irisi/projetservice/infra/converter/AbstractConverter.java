@@ -1,13 +1,13 @@
-package com.irisi.projetservice.app.converter;
+package com.irisi.projetservice.infra.converter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractMapper<K, V> {
+public abstract class AbstractConverter<K, V> {
 
     public abstract K toPojo(V dto);
 
-    public abstract V toDto(K entity);
+    public abstract V toEntity(K entity);
 
     public List<K> toItems(List<V> dtos) {
         if (dtos == null || dtos.isEmpty()) {
@@ -27,7 +27,7 @@ public abstract class AbstractMapper<K, V> {
         } else {
             List<V> dtos = new ArrayList();
             for (K item : entites) {
-                dtos.add(toDto(item));
+                dtos.add(toEntity(item));
             }
             return dtos;
         }

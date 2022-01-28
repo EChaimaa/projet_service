@@ -13,7 +13,7 @@ public interface CategorieInfra extends AbstractInfra {
 
     CategorieEntity save(CategorieEntity categorieEntity);
 
-    CategorieEntity save(CategoriePojo categoriePojo);
+    CategoriePojo save(CategoriePojo categoriePojo);
 
     CategorieEntity update(CategorieEntity clientEntity);
 

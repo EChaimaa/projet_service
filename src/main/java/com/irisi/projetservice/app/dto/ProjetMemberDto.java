@@ -4,10 +4,10 @@ import java.util.List;
 
 public class ProjetMemberDto {
     private Long id;
-    private EmployeDto employeDto;
-    private ProjetDto projetDto;
+    private EmployeDto employe;
+    private ProjetDto projet;
     private long nbrHeures;
-    private List<ProjetDetailDto> workDetailsDtos;
+    private List<ProjetDetailDto> workDetails;
 
     public Long getId() {
         return id;
@@ -17,20 +17,20 @@ public class ProjetMemberDto {
         this.id = id;
     }
 
-    public EmployeDto getEmployeDto() {
-        return employeDto;
+    public EmployeDto getEmploye() {
+        return employe;
     }
 
-    public void setEmployeDto(EmployeDto employeDto) {
-        this.employeDto = employeDto;
+    public void setEmploye(EmployeDto employe) {
+        this.employe = employe;
     }
 
-    public ProjetDto getProjetDto() {
-        return projetDto;
+    public ProjetDto getProjet() {
+        return projet;
     }
 
-    public void setProjetDto(ProjetDto projetDto) {
-        this.projetDto = projetDto;
+    public void setProjet(ProjetDto projet) {
+        this.projet = projet;
     }
 
     public long getNbrHeures() {
@@ -41,11 +41,11 @@ public class ProjetMemberDto {
         this.nbrHeures = nbrHeures;
     }
 
-    public List<ProjetDetailDto> getWorkDetailsDtos() {
-        return workDetailsDtos;
+    public List<ProjetDetailDto> getWorkDetails() {
+        return workDetails;
     }
 
-    public void setWorkDetailsDtos(List<ProjetDetailDto> workDetailsDtos) {
-        this.workDetailsDtos = workDetailsDtos;
+    public void setWorkDetails(List<ProjetDetailDto> workDetails) {
+        this.workDetails = workDetails;
     }
 }

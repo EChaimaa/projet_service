@@ -2,31 +2,34 @@ package com.irisi.projetservice.app.converter;
 
 import com.irisi.projetservice.app.dto.ProjetDetailDto;
 import com.irisi.projetservice.app.dto.ProjetMemberDto;
+import com.irisi.projetservice.domain.pojo.ProjetDetailPojo;
+import com.irisi.projetservice.domain.pojo.ProjetMemberPojo;
 import com.irisi.projetservice.infra.entity.ProjetDetailEntity;
 import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjetMemberMapper extends AbstractMapper<ProjetMemberEntity, ProjetMemberDto> {
+public class ProjetMemberMapper extends AbstractMapper<ProjetMemberPojo, ProjetMemberDto> {
 
 
     @Override
-    public ProjetMemberEntity toEntity(ProjetMemberDto dto) {
+    public ProjetMemberPojo toPojo(ProjetMemberDto dto) {
         if (dto == null) {
             return null;
         } else {
-            ProjetMemberEntity item = new ProjetMemberEntity();
+            ProjetMemberPojo item = new ProjetMemberPojo();
 
+            item.setId(dto.getId());
             ProjetMapper projetMapper = new ProjetMapper();
-            item.setProjet(projetMapper.toEntity(dto.getProjetDto()));
+            item.setProjet(projetMapper.toPojo(dto.getProjet()));
             EmployeMapper employeMapper = new EmployeMapper();
-            item.setEmploye(employeMapper.toEntity(dto.getEmployeDto()));
+            item.setEmploye(employeMapper.toPojo(dto.getEmploye()));
             item.setNbrHeures(dto.getNbrHeures());
 
             ProjetDetailMapper projetDetailMapper = new ProjetDetailMapper();
-            List<ProjetDetailEntity> projetWorkDetails = new ArrayList<ProjetDetailEntity>();
-            dto.getWorkDetailsDtos().forEach(d -> projetWorkDetails.add(projetDetailMapper.toEntity(d)));
+            List<ProjetDetailPojo> projetWorkDetails = new ArrayList<ProjetDetailPojo>();
+            dto.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailMapper.toPojo(d)));
             item.setWorkDetails(projetWorkDetails);
 
             return item;
@@ -34,21 +37,22 @@ public class ProjetMemberMapper extends AbstractMapper<ProjetMemberEntity, Proje
     }
 
     @Override
-    public ProjetMemberDto toDto(ProjetMemberEntity item) {
+    public ProjetMemberDto toDto(ProjetMemberPojo item) {
         if(item == null){
             return null;
         }else{
             ProjetMemberDto dto = new ProjetMemberDto();
+            dto.setId(item.getId());
             ProjetMapper projetMapper = new ProjetMapper();
-            dto.setProjetDto(projetMapper.toDto(item.getProjet()));
+            dto.setProjet(projetMapper.toDto(item.getProjet()));
             EmployeMapper employeMapper = new EmployeMapper();
-            dto.setEmployeDto(employeMapper.toDto(item.getEmploye()));
+            dto.setEmploye(employeMapper.toDto(item.getEmploye()));
             dto.setNbrHeures(item.getNbrHeures());
 
             ProjetDetailMapper projetDetailMapper = new ProjetDetailMapper();
             List<ProjetDetailDto> projetWorkDetails = new ArrayList<ProjetDetailDto>();
             item.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailMapper.toDto(d)));
-            dto.setWorkDetailsDtos(projetWorkDetails);
+            dto.setWorkDetails(projetWorkDetails);
 
             return dto;
 

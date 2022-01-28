@@ -1,6 +1,7 @@
 package com.irisi.projetservice.infra.impl;
 
 import com.irisi.projetservice.domain.pojo.CategoriePojo;
+import com.irisi.projetservice.infra.converter.CategorieConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
 import com.irisi.projetservice.infra.dao.CategorieDao;
 import com.irisi.projetservice.infra.entity.CategorieEntity;
@@ -40,10 +41,11 @@ public class CategorieInfraImpl extends AbstractInfraImpl implements CategorieIn
     }
 
     @Override
-    public CategorieEntity save(CategoriePojo categoriePojo) {
-        CategorieEntity categorieEntity = new CategorieEntity();
-        BeanUtils.copyProperties(categoriePojo, categorieEntity);
-        return save(categorieEntity);
+    public CategoriePojo save(CategoriePojo categoriePojo) {
+        CategorieConverter categorieConverter = new CategorieConverter();
+        CategorieEntity categorieEntity = categorieConverter.toEntity(categoriePojo);
+        CategoriePojo categorie = categorieConverter.toPojo(save(categorieEntity));
+        return categorie;
     }
 
     @Override

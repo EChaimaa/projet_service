@@ -37,4 +37,14 @@ public class ClientDto {
     public void setReference(String reference) {
         this.reference = reference;
     }
+
+    @Override
+    public String toString() {
+        return "ClientDto{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", reference='" + reference + '\'' +
+                '}';
+    }
 }

@@ -3,6 +3,7 @@ package com.irisi.projetservice.domain.pojo;
 import java.util.Date;
 
 public class ProjetDetailPojo {
+    private Long id;
     private Date beginTime;
     private Date endTime;
     private ProjetMemberPojo projetMember;
@@ -14,6 +15,14 @@ public class ProjetDetailPojo {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.projetMember = projetMember;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getBeginTime() {

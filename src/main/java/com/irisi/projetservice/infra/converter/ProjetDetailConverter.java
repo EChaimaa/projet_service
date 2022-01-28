@@ -1,12 +1,11 @@
-package com.irisi.projetservice.app.converter;
+package com.irisi.projetservice.infra.converter;
 
-import com.irisi.projetservice.app.dto.ProjetDetailDto;
 import com.irisi.projetservice.domain.pojo.ProjetDetailPojo;
 import com.irisi.projetservice.infra.entity.ProjetDetailEntity;
 
-public class ProjetDetailMapper extends AbstractMapper<ProjetDetailPojo, ProjetDetailDto>{
+public class ProjetDetailConverter extends AbstractConverter<ProjetDetailPojo, ProjetDetailEntity> {
     @Override
-    public ProjetDetailPojo toPojo(ProjetDetailDto dto) {
+    public ProjetDetailPojo toPojo(ProjetDetailEntity dto) {
         if(dto == null){
             return null;
         }else{
@@ -14,23 +13,23 @@ public class ProjetDetailMapper extends AbstractMapper<ProjetDetailPojo, ProjetD
             item.setId(dto.getId());
             item.setBeginTime(dto.getBeginTime());
             item.setEndTime(dto.getEndTime());
-            ProjetMemberMapper projetMemberMapper = new ProjetMemberMapper();
-            item.setProjetMember(projetMemberMapper.toPojo(dto.getProjetMember()));
+            ProjetMemberConverter projetMemberConverter = new ProjetMemberConverter();
+            item.setProjetMember(projetMemberConverter.toPojo(dto.getProjetMember()));
             return item;
         }
     }
 
     @Override
-    public ProjetDetailDto toDto(ProjetDetailPojo item) {
+    public ProjetDetailEntity toEntity(ProjetDetailPojo item) {
         if(item == null){
             return null;
         }else{
-            ProjetDetailDto dto = new ProjetDetailDto();
+            ProjetDetailEntity dto = new ProjetDetailEntity();
             dto.setId(item.getId());
             dto.setBeginTime(item.getBeginTime());
             dto.setEndTime(item.getEndTime());
-            ProjetMemberMapper projetMemberMapper = new ProjetMemberMapper();
-            dto.setProjetMember(projetMemberMapper.toDto(item.getProjetMember()));
+            ProjetMemberConverter projetMemberConverter = new ProjetMemberConverter();
+            dto.setProjetMember(projetMemberConverter.toEntity(item.getProjetMember()));
             return dto;
         }
     }

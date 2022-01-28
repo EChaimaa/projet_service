@@ -1,4 +1,4 @@
-package com.irisi.projetservice.domain.projet.affect;
+package com.irisi.projetservice.domain.projectMember.affectTo;
 
 import com.irisi.projetservice.domain.core.AbstractProcess;
 
