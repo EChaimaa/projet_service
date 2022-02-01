@@ -22,8 +22,8 @@ public class EmployeInfraImpl extends AbstractInfraImpl implements EmployeInfra 
         if(employeEntity == null){
             return  null;
         }
-        EmployePojo employePojo = new EmployePojo();
-        BeanUtils.copyProperties(employeEntity, employePojo);
+        EmployeConverter employeConverter = new EmployeConverter();
+        EmployePojo employePojo = employeConverter.toPojo(employeEntity);
         return employePojo;
     }
 
@@ -58,8 +58,8 @@ public class EmployeInfraImpl extends AbstractInfraImpl implements EmployeInfra 
 
     @Override
     public EmployeEntity update(EmployePojo employePojo) {
-        EmployeEntity employeEntity = new EmployeEntity();
-        BeanUtils.copyProperties(employePojo, employeEntity);
+        EmployeConverter employeConverter = new EmployeConverter();
+        EmployeEntity employeEntity = employeConverter.toEntity(employePojo);
         return update(employeEntity);
     }
 

@@ -56,8 +56,8 @@ public class ProjetDetailImpl extends AbstractInfraImpl implements ProjetDetailI
 
     @Override
     public ProjetDetailEntity update(ProjetDetailPojo projetDetailPojo) {
-        ProjetDetailEntity projetDetailEntity = new ProjetDetailEntity();
-        BeanUtils.copyProperties(projetDetailPojo, projetDetailEntity);
+        ProjetDetailConverter projetDetailConverter = new ProjetDetailConverter();
+        ProjetDetailEntity projetDetailEntity = projetDetailConverter.toEntity(projetDetailPojo);
         return update(projetDetailEntity);
     }
 

@@ -25,7 +25,7 @@ public class ClientCreateProcessImpl extends AbstractProcessImpl<ClientCreateInp
 
     @Override
     public void run(ClientCreateInput abstractProcessInput, Result result) {
-        ClientPojo client = clientInfra.findByReference(abstractProcessInput.getClientPojo().getReference());
+        ClientPojo client = abstractProcessInput.getClientPojo();
         clientInfra.save(client);
         result.addInfoMessage("client.create.client_created");
     }

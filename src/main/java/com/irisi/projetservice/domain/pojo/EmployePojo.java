@@ -1,11 +1,24 @@
 package com.irisi.projetservice.domain.pojo;
 
+import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
+
+import java.util.List;
+
 public class EmployePojo {
     private Long id;
     private String nom;
     private String prenom;
     private String matricule;
     private CategoriePojo categorie;
+    private List<ProjetMemberPojo> projetMembers;
+
+    public List<ProjetMemberPojo> getProjetMembers() {
+        return projetMembers;
+    }
+
+    public void setProjetMembers(List<ProjetMemberPojo> projetMembers) {
+        this.projetMembers = projetMembers;
+    }
 
     public Long getId() {
         return id;
@@ -45,5 +58,16 @@ public class EmployePojo {
 
     public void setCategorie(CategoriePojo categorie) {
         this.categorie = categorie;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployePojo{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", matricule='" + matricule + '\'' +
+                ", categorie=" + categorie +
+                '}';
     }
 }

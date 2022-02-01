@@ -1,12 +1,25 @@
 package com.irisi.projetservice.app.dto;
 
 
+import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
+
+import java.util.List;
+
 public class EmployeDto {
     private Long id;
     private String nom;
     private String prenom;
     private String matricule;
     private CategorieDto categorie;
+    private List<ProjetMemberDto> projetMembers;
+
+    public List<ProjetMemberDto> getProjetMembers() {
+        return projetMembers;
+    }
+
+    public void setProjetMembers(List<ProjetMemberDto> projetMembers) {
+        this.projetMembers = projetMembers;
+    }
 
     public Long getId() {
         return id;

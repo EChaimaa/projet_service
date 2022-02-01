@@ -14,6 +14,8 @@ import com.irisi.projetservice.domain.employe.delete.EmployeDeleteProcess;
 import com.irisi.projetservice.domain.employe.delete.EmployeDeleteProcessImpl;
 import com.irisi.projetservice.domain.projectMember.affectTo.ProjectAffectToProcess;
 import com.irisi.projetservice.domain.projectMember.affectTo.ProjectAffectToProcessImpl;
+import com.irisi.projetservice.domain.projectMember.delete.ProjectMemberDeleteProcessImpl;
+import com.irisi.projetservice.domain.projectMember.delete.ProjetMemberDeleteProcess;
 import com.irisi.projetservice.domain.projectMember.update.ProjectMemberUpdateProcess;
 import com.irisi.projetservice.domain.projectMember.update.ProjectMemberUpdateProcessImpl;
 import com.irisi.projetservice.domain.projet.create.ProjectCreateProcess;
@@ -35,11 +37,6 @@ public class Processinjection {
     @Bean
     public ProjectDeleteProcess projectDeleteProcess(ProjetInfra projetInfra){
         return new ProjectDeleteProcessImpl(projetInfra);
-    }
-
-    @Bean
-    public ProjectAffectToProcess projectAffectToProcess(EmployeInfra employeInfra, ProjetInfra projetInfra, ProjetMemberInfra projetMemberInfra){
-        return new ProjectAffectToProcessImpl(employeInfra, projetInfra, projetMemberInfra);
     }
 
     //Employe
@@ -79,6 +76,16 @@ public class Processinjection {
     @Bean
     public ProjectMemberUpdateProcess projectMemberUpdateProcess(ProjetDetailInfra projetDetailInfra, ProjetMemberInfra projetMemberInfra) {
         return new ProjectMemberUpdateProcessImpl(projetDetailInfra, projetMemberInfra);
+    }
+
+    @Bean
+    public ProjectAffectToProcess projectAffectToProcess(EmployeInfra employeInfra, ProjetInfra projetInfra, ProjetMemberInfra projetMemberInfra){
+        return new ProjectAffectToProcessImpl(employeInfra, projetInfra, projetMemberInfra);
+    }
+
+    @Bean
+    public ProjetMemberDeleteProcess projetMemberDeleteProcess(ProjetMemberInfra projetMemberInfra){
+        return new ProjectMemberDeleteProcessImpl(projetMemberInfra);
     }
 
 }

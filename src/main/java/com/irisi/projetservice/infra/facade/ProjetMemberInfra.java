@@ -10,6 +10,8 @@ public interface ProjetMemberInfra extends AbstractInfra {
 
     ProjetMemberPojo findByProjetAndEmploye(String referenceProjet, String matriculeEmploye);
 
+    List<ProjetMemberPojo> findByProjet(String referenceProjet);
+
     ProjetMemberEntity save(ProjetMemberEntity projetMemberEntity);
 
     ProjetMemberPojo save(ProjetMemberPojo projetMemberPojo);
@@ -17,6 +19,8 @@ public interface ProjetMemberInfra extends AbstractInfra {
     ProjetMemberEntity update(ProjetMemberEntity projetMemberEntity);
 
     ProjetMemberEntity update(ProjetMemberPojo projetMemberPojo);
+
+    int deleteByProjectAndEmploye(String reference, String matricule);
 
     List<ProjetMemberEntity> findAll();
 }

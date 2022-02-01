@@ -23,7 +23,7 @@ public class CategoryCreateProcessImpl extends AbstractProcessImpl<CategoryCreat
 
     @Override
     public void run(CategoryCreateInput abstractProcessInput, Result result) {
-        CategoriePojo category = categorieInfra.findByLibelle(abstractProcessInput.getCategoriePojo().getLibelle());
+        CategoriePojo category = abstractProcessInput.getCategoriePojo();
         categorieInfra.save(category);
         result.addInfoMessage("category.create.category_created");
     }

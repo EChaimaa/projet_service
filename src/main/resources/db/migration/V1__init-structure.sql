@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categorie_entity` (
   `id` bigint(20) NOT NULL,
   `libelle` varchar(255) DEFAULT NULL,
-  `salaire_par_jour` int(11) NOT NULL
+  `salaire_par_heure` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,7 +101,7 @@ CREATE TABLE `projet_entity_projet_members` (
 
 CREATE TABLE `projet_member_entity` (
   `id` bigint(20) NOT NULL,
-  `nbr_jour` int(11) NOT NULL,
+  `nbr_heures` int(11) NOT NULL,
   `employe_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

@@ -1,5 +1,6 @@
 package com.irisi.projetservice.infra.impl;
 
+import com.irisi.projetservice.domain.pojo.ProjetMemberPojo;
 import com.irisi.projetservice.domain.pojo.ProjetPojo;
 import com.irisi.projetservice.infra.converter.ProjetConverter;
 import com.irisi.projetservice.infra.core.AbstractInfraImpl;
@@ -24,8 +25,8 @@ public class ProjetInfraImpl extends AbstractInfraImpl implements ProjetInfra {
         if(projetEntity == null){
             return null;
         }
-        ProjetPojo projetPojo = new ProjetPojo();
-        BeanUtils.copyProperties(projetEntity, projetPojo);
+        ProjetConverter projetConverter = new ProjetConverter();
+        ProjetPojo projetPojo = projetConverter.toPojo(projetEntity);
         return projetPojo;
     }
 
@@ -60,8 +61,8 @@ public class ProjetInfraImpl extends AbstractInfraImpl implements ProjetInfra {
 
     @Override
     public ProjetEntity update(ProjetPojo projetPojo) {
-        ProjetEntity projetEntity = new ProjetEntity();
-        BeanUtils.copyProperties(projetPojo, projetEntity);
+        ProjetConverter projetConverter = new ProjetConverter();
+        ProjetEntity projetEntity = projetConverter.toEntity(projetPojo);
         return update(projetEntity);
     }
 

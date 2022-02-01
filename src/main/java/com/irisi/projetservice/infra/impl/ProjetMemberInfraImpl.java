@@ -14,7 +14,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProjetMemberInfraImpl extends AbstractInfraImpl implements ProjetMemberInfra {
@@ -29,20 +31,29 @@ public class ProjetMemberInfraImpl extends AbstractInfraImpl implements ProjetMe
     public ProjetMemberPojo findByProjetAndEmploye(String referenceProjet, String matriculeEmploye) {
         ProjetEntity projetEntity = projetDao.findByReference(referenceProjet);
         EmployeEntity employeEntity = employeDao.findByMatricule(matriculeEmploye);
-        ProjetMemberEntity projetMemberEntity = projetMemberDao.findByProjetReferenceAndEmployeMatricule(referenceProjet, matriculeEmploye);
         if(projetEntity == null|| employeEntity == null){
             return null;
         }
-        ProjetMemberPojo projetMemberPojo = new ProjetMemberPojo();
-        BeanUtils.copyProperties(projetMemberEntity, projetMemberPojo);
-        return projetMemberPojo;
+        ProjetMemberEntity projetMemberEntity = projetMemberDao.findByProjetReferenceAndEmployeMatricule(referenceProjet, matriculeEmploye);
+        ProjetMemberConverter projetMemberConverter = new ProjetMemberConverter();
+        ProjetMemberPojo projetMember = projetMemberConverter.toPojo(projetMemberEntity);
+        return projetMember;
+    }
+
+    @Override
+    public List<ProjetMemberPojo> findByProjet(String referenceProjet) {
+        List<ProjetMemberEntity> memberEntities = projetMemberDao.findByProjetReference(referenceProjet);
+        List<ProjetMemberPojo> members = new ArrayList<ProjetMemberPojo>();
+        for (ProjetMemberEntity projetMemberEntity: memberEntities) {
+            ProjetMemberConverter projetMemberConverter = new ProjetMemberConverter();
+            ProjetMemberPojo projetMemberPojo = projetMemberConverter.toPojo(projetMemberEntity);
+            members.add(projetMemberPojo);
+        }
+        return members;
     }
 
     @Override
     public ProjetMemberEntity save(ProjetMemberEntity projetMemberEntity) {
-        if (projetMemberDao.findById(projetMemberEntity.getId()) != null) {
-            return null;
-        }
         return projetMemberDao.save(projetMemberEntity);
     }
 
@@ -64,9 +75,16 @@ public class ProjetMemberInfraImpl extends AbstractInfraImpl implements ProjetMe
 
     @Override
     public ProjetMemberEntity update(ProjetMemberPojo projetMemberPojo) {
-        ProjetMemberEntity projetMemberEntity = new ProjetMemberEntity();
-        BeanUtils.copyProperties(projetMemberPojo, projetMemberEntity);
+        ProjetMemberConverter projetMemberConverter = new ProjetMemberConverter();
+        ProjetMemberEntity projetMemberEntity = projetMemberConverter.toEntity(projetMemberPojo);
         return update(projetMemberEntity);
+    }
+
+    @Override
+    public int deleteByProjectAndEmploye(String reference, String matricule) {
+        ProjetMemberPojo projetMember = findByProjetAndEmploye(reference, matricule);
+        projetMemberDao.deleteById(projetMember.getId());
+        return 1;
     }
 
     @Override

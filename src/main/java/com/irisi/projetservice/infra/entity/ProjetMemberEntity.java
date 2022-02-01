@@ -20,7 +20,7 @@ public class ProjetMemberEntity {
     @ManyToOne
     private ProjetEntity projet;
     private long nbrHeures;
-    @OneToMany
+    @OneToMany(mappedBy = "projetMember")
     private List<ProjetDetailEntity> workDetails;
 
     public Long getId() {

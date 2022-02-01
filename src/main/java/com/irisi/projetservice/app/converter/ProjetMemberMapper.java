@@ -27,10 +27,10 @@ public class ProjetMemberMapper extends AbstractMapper<ProjetMemberPojo, ProjetM
             item.setEmploye(employeMapper.toPojo(dto.getEmploye()));
             item.setNbrHeures(dto.getNbrHeures());
 
-            ProjetDetailMapper projetDetailMapper = new ProjetDetailMapper();
-            List<ProjetDetailPojo> projetWorkDetails = new ArrayList<ProjetDetailPojo>();
-            dto.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailMapper.toPojo(d)));
-            item.setWorkDetails(projetWorkDetails);
+//            ProjetDetailMapper projetDetailMapper = new ProjetDetailMapper();
+//            List<ProjetDetailPojo> projetWorkDetails = new ArrayList<ProjetDetailPojo>();
+//            dto.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailMapper.toPojo(d)));
+//            item.setWorkDetails(projetWorkDetails);
 
             return item;
         }
@@ -49,10 +49,10 @@ public class ProjetMemberMapper extends AbstractMapper<ProjetMemberPojo, ProjetM
             dto.setEmploye(employeMapper.toDto(item.getEmploye()));
             dto.setNbrHeures(item.getNbrHeures());
 
-            ProjetDetailMapper projetDetailMapper = new ProjetDetailMapper();
-            List<ProjetDetailDto> projetWorkDetails = new ArrayList<ProjetDetailDto>();
-            item.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailMapper.toDto(d)));
-            dto.setWorkDetails(projetWorkDetails);
+//            ProjetDetailMapper projetDetailMapper = new ProjetDetailMapper();
+//            List<ProjetDetailDto> projetWorkDetails = new ArrayList<ProjetDetailDto>();
+//            item.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailMapper.toDto(d)));
+//            dto.setWorkDetails(projetWorkDetails);
 
             return dto;
 

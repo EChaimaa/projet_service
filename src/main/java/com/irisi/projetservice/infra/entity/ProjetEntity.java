@@ -21,15 +21,15 @@ public class ProjetEntity {
     private Long id;
     private String reference;
     private String name;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date beginTime;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
     @ManyToOne
     private ClientEntity client;
-    @OneToMany
+    @OneToMany(mappedBy = "projet")
     private List<ProjetMemberEntity> projetMembers;
 
 }

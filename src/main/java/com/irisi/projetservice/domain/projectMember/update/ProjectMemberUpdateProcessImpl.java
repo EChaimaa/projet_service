@@ -23,32 +23,34 @@ public class ProjectMemberUpdateProcessImpl extends AbstractProcessImpl<ProjectM
 
     @Override
     public void validate(ProjectMemberUpdateInput abstractProcessInput, Result result) {
-        Date beginTime = abstractProcessInput.getBeginTime();
-        Date endTime = abstractProcessInput.getBeginTime();
-        String referenceProjet = abstractProcessInput.getProjet().getReference();
-        String matriculeEmploye = abstractProcessInput.getEmploye().getMatricule();
+        Date beginTime = abstractProcessInput.getProjetDetail().getBeginTime();
+        Date endTime = abstractProcessInput.getProjetDetail().getEndTime();
+        String referenceProjet = abstractProcessInput.getProjetDetail().getProjetMember().getProjet().getReference();
+        String matriculeEmploye = abstractProcessInput.getProjetDetail().getProjetMember().getEmploye().getMatricule();
         ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(referenceProjet, matriculeEmploye);
 
         if (beginTime == null || endTime == null || projetMember == null) {
-            result.addErrorMessage("projetMember.update.prob_update");
+            result.addErrorMessage("projetMember.update.bad_parameters");
         }
     }
 
     @Override
     public void run(ProjectMemberUpdateInput abstractProcessInput, Result result) {
-        Date beginTime = abstractProcessInput.getBeginTime();
-        Date endTime = abstractProcessInput.getBeginTime();
+        ProjetDetailPojo projetDetailPojo = abstractProcessInput.getProjetDetail();
+        Date beginTime = projetDetailPojo.getBeginTime();
+        Date endTime = projetDetailPojo.getEndTime();
+        String referenceProjet = projetDetailPojo.getProjetMember().getProjet().getReference();
+        String matriculeEmploye = projetDetailPojo.getProjetMember().getEmploye().getMatricule();
+        ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(referenceProjet, matriculeEmploye);
 
+        System.out.println("I am here: "+projetMember.toString());
         long diff = endTime.getTime() - beginTime.getTime();
         long hours = TimeUnit.MILLISECONDS.toHours(diff);
-
-        String referenceProjet = abstractProcessInput.getProjet().getReference();
-        String matriculeEmploye = abstractProcessInput.getEmploye().getMatricule();
-        ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(referenceProjet, matriculeEmploye);
 
         projetMember.setNbrHeures(projetMember.getNbrHeures()+hours);
         projetMemberInfra.update(projetMember);
         ProjetDetailPojo projetDetail = new ProjetDetailPojo(beginTime, endTime, projetMember);
+        System.out.println("I am here: "+projetDetail.toString());
         projetDetailInfra.save(projetDetail);
         result.addInfoMessage("projetMember.update.operation_success");
     }

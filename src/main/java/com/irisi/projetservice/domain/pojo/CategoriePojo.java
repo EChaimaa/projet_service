@@ -28,4 +28,13 @@ public class CategoriePojo {
     public void setSalaireParHeure(int salaireParHeure) {
         this.salaireParHeure = salaireParHeure;
     }
+
+    @Override
+    public String toString() {
+        return "CategoriePojo{" +
+                "id=" + id +
+                ", libelle='" + libelle + '\'' +
+                ", salaireParHeure=" + salaireParHeure +
+                '}';
+    }
 }

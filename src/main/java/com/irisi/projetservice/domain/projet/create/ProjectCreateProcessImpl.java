@@ -19,7 +19,6 @@ public class ProjectCreateProcessImpl extends AbstractProcessImpl<ProjectCreateI
     @Override
     public void validate(ProjectCreateInput abstractProcessInput, Result result) {
         ProjetPojo projet =projetInfra.findByReference(abstractProcessInput.getProjetPojo().getReference());
-        System.out.println("I am here: "+abstractProcessInput.getProjetPojo().getClient().toString());
         ClientPojo client = clientInfra.findByReference(abstractProcessInput.getProjetPojo().getClient().getReference());
 
         if (projet != null && projet.getId() != null) {
@@ -39,7 +38,7 @@ public class ProjectCreateProcessImpl extends AbstractProcessImpl<ProjectCreateI
         if(abstractProcessInput.getProjetPojo().getClient().getId() == null) {
            client = clientInfra.save(projet.getClient());
         }else{
-            client = clientInfra.findByReference(abstractProcessInput.getProjetPojo().getClient().getReference());
+            client = clientInfra.findByReference(projet.getClient().getReference());
         }
         projet.setClient(client);
         ProjetPojo savedProjet = projetInfra.save(projet);

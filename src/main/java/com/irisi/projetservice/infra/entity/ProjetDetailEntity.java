@@ -10,10 +10,10 @@ public class ProjetDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date beginTime;
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss.SSS")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
     @ManyToOne

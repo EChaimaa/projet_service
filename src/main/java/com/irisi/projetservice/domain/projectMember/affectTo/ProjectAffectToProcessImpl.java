@@ -30,30 +30,28 @@ public class ProjectAffectToProcessImpl extends AbstractProcessImpl<ProjectAffec
         ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(reference, matricule);
 
         if (projetMember != null && projetMember.getId() != null) {
-            result.addErrorMessage("projet.affectTo.projetMember_already_exists");
+            result.addErrorMessage("projetMember.affectTo.projetMember_already_exists");
         }
 
         if (employe == null) {
-            result.addErrorMessage("projet.affectTo.employe_not_found");
+            result.addErrorMessage("projetMember.affectTo.employe_not_found");
         }
 
         if (projet == null) {
-            result.addErrorMessage("projet.affectTo.projet_not_found");
+            result.addErrorMessage("projetMember.affectTo.projet_not_found");
         }
     }
 
     @Override
     public void run(ProjectAffectToInput abstractProcessInput, Result result) {
+        ProjetMemberPojo projetMember = abstractProcessInput.getProjetMember();
+
         EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getProjetMember().getEmploye().getMatricule());
         ProjetPojo projet = projetInfra.findByReference(abstractProcessInput.getProjetMember().getProjet().getReference());
-
-        ProjetMemberPojo projetMember = projetMemberInfra.findByProjetAndEmploye(projet.getReference(), employe.getMatricule());
-
         projetMember.setEmploye(employe);
         projetMember.setProjet(projet);
-        projetMember.setNbrHeures(0);
 
         projetMemberInfra.save(projetMember);
-        result.addInfoMessage("projet.affectTo.projetMember_created");
+        result.addInfoMessage("projetMember.affectTo.projetMember_created");
     }
 }

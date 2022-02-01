@@ -25,7 +25,7 @@ public class ProjetRest {
     ProjectDeleteProcess projectDeleteProcess;
 
     @PostMapping("/")
-    public Result createProjet(@RequestBody ProjetDto projetDto){
+    public Result createProjet(@RequestBody ProjetDto projetDto) {
         ProjetMapper projetMapper = new ProjetMapper();
         ProjetPojo projet = projetMapper.toPojo(projetDto);
         ProjectCreateInput projectCreateInput = new ProjectCreateInput();
@@ -35,10 +35,14 @@ public class ProjetRest {
 
     @Transactional
     @DeleteMapping("/{refProjet}")
-    public Result deleteProjet(@PathVariable String refProjet){
+    public Result deleteProjet(@PathVariable String refProjet) {
         ProjectDeleteInput projectDeleteInput = new ProjectDeleteInput();
         projectDeleteInput.setReference(refProjet);
         return projectDeleteProcess.execute(projectDeleteInput);
     }
 
+    @GetMapping("/{refProjet}")
+    public ProjetPojo findByReference(@PathVariable String refProjet) {
+        return projetInfra.findByReference(refProjet);
+    }
 }

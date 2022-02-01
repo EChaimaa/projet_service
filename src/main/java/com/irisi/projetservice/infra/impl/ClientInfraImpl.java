@@ -22,8 +22,8 @@ public class ClientInfraImpl extends AbstractInfraImpl implements ClientInfra {
         if(clientEntity == null){
             return null;
         }
-        ClientPojo clientPojo = new ClientPojo();
-        BeanUtils.copyProperties(clientEntity, clientPojo);
+        ClientConverter clientConverter = new ClientConverter();
+        ClientPojo clientPojo = clientConverter.toPojo(clientEntity);
         return clientPojo;
     }
 
@@ -58,8 +58,8 @@ public class ClientInfraImpl extends AbstractInfraImpl implements ClientInfra {
 
     @Override
     public ClientEntity update(ClientPojo clientPojo) {
-        ClientEntity clientEntity = new ClientEntity();
-        BeanUtils.copyProperties(clientPojo, clientEntity);
+        ClientConverter clientConverter = new ClientConverter();
+        ClientEntity clientEntity = clientConverter.toEntity(clientPojo);
         return update(clientEntity);
     }
 

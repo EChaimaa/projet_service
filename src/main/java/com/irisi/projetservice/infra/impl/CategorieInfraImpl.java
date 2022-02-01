@@ -22,8 +22,8 @@ public class CategorieInfraImpl extends AbstractInfraImpl implements CategorieIn
         if(categorieEntity ==  null){
             return null;
         }
-        CategoriePojo categoriePojo = new CategoriePojo();
-        BeanUtils.copyProperties(categorieEntity, categoriePojo);
+        CategorieConverter categorieConverter = new CategorieConverter();
+        CategoriePojo categoriePojo = categorieConverter.toPojo(categorieEntity);
         return categoriePojo;
     }
 
@@ -58,8 +58,8 @@ public class CategorieInfraImpl extends AbstractInfraImpl implements CategorieIn
 
     @Override
     public CategorieEntity update(CategoriePojo categoriePojo) {
-        CategorieEntity categorieEntity = new CategorieEntity();
-        BeanUtils.copyProperties(categoriePojo, categorieEntity);
+        CategorieConverter categorieConverter = new CategorieConverter();
+        CategorieEntity categorieEntity  = categorieConverter.toEntity(categoriePojo);
         return update(categorieEntity);
     }
 

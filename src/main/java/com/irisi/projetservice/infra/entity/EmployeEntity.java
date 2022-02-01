@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +20,16 @@ public class EmployeEntity {
     private String matricule;
     @ManyToOne
     private CategorieEntity categorie;
+    @OneToMany(mappedBy = "employe")
+    private List<ProjetMemberEntity> projetMembers;
+
+    public List<ProjetMemberEntity> getProjetMembers() {
+        return projetMembers;
+    }
+
+    public void setProjetMembers(List<ProjetMemberEntity> projetMembers) {
+        this.projetMembers = projetMembers;
+    }
 
     public Long getId() {
         return id;

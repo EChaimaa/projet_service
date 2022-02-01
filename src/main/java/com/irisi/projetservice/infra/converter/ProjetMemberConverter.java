@@ -25,10 +25,10 @@ public class ProjetMemberConverter extends AbstractConverter<ProjetMemberPojo, P
             item.setEmploye(employeConverter.toPojo(dto.getEmploye()));
             item.setNbrHeures(dto.getNbrHeures());
 
-            ProjetDetailConverter projetDetailConverter = new ProjetDetailConverter();
-            List<ProjetDetailPojo> projetWorkDetails = new ArrayList<ProjetDetailPojo>();
-            dto.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailConverter.toPojo(d)));
-            item.setWorkDetails(projetWorkDetails);
+//            ProjetDetailConverter projetDetailConverter = new ProjetDetailConverter();
+//            List<ProjetDetailPojo> projetWorkDetails = new ArrayList<ProjetDetailPojo>();
+//            dto.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailConverter.toPojo(d)));
+//            item.setWorkDetails(projetWorkDetails);
 
             return item;
         }
@@ -47,10 +47,10 @@ public class ProjetMemberConverter extends AbstractConverter<ProjetMemberPojo, P
             dto.setEmploye(employeConverter.toEntity(item.getEmploye()));
             dto.setNbrHeures(item.getNbrHeures());
 
-            ProjetDetailConverter projetDetailConverter = new ProjetDetailConverter();
-            List<ProjetDetailEntity> projetWorkDetails = new ArrayList<ProjetDetailEntity>();
-            item.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailConverter.toEntity(d)));
-            dto.setWorkDetails(projetWorkDetails);
+//            ProjetDetailConverter projetDetailConverter = new ProjetDetailConverter();
+//            List<ProjetDetailEntity> projetWorkDetails = new ArrayList<ProjetDetailEntity>();
+//            item.getWorkDetails().forEach(d -> projetWorkDetails.add(projetDetailConverter.toEntity(d)));
+//            dto.setWorkDetails(projetWorkDetails);
 
             return dto;
 

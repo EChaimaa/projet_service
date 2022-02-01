@@ -48,4 +48,14 @@ public class ProjetDetailPojo {
     public void setProjetMember(ProjetMemberPojo projetMember) {
         this.projetMember = projetMember;
     }
+
+    @Override
+    public String toString() {
+        return "ProjetDetailPojo{" +
+                "id=" + id +
+                ", beginTime=" + beginTime +
+                ", endTime=" + endTime +
+                ", projetMember=" + projetMember +
+                '}';
+    }
 }

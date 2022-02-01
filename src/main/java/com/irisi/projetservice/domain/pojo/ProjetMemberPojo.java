@@ -48,4 +48,15 @@ public class ProjetMemberPojo {
     public void setWorkDetails(List<ProjetDetailPojo> workDetails) {
         this.workDetails = workDetails;
     }
+
+    @Override
+    public String toString() {
+        return "ProjetMemberPojo{" +
+                "id=" + id +
+                ", employe=" + employe +
+                ", projet=" + projet +
+                ", nbrHeures=" + nbrHeures +
+                ", workDetails=" + workDetails +
+                '}';
+    }
 }

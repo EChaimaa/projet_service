@@ -19,23 +19,31 @@ public class EmployeCreateProcessImpl extends AbstractProcessImpl<EmployeCreateI
     @Override
     public void validate(EmployeCreateInput abstractProcessInput, Result result) {
         EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getEmploye().getMatricule());
-        CategoriePojo category = categorieInfra.findByLibelle(abstractProcessInput.getLibelleCategorie());
+        CategoriePojo category = categorieInfra.findByLibelle(abstractProcessInput.getEmploye().getCategorie().getLibelle());
 
         if (employe != null && employe.getId() != null) {
             result.addErrorMessage("employe.create.employe_already_exists");
         }
 
-        if (category == null) {
-            result.addErrorMessage("employe.create.category_not_found");
+        if (abstractProcessInput.getEmploye().getCategorie().getId() == null) {
+            if(category != null) result.addErrorMessage("employe.create.category_already_exists");
+        }else{
+            if(category == null) result.addErrorMessage("employe.create.category_not_found");
         }
     }
 
     @Override
     public void run(EmployeCreateInput abstractProcessInput, Result result) {
-        EmployePojo employe = employeInfra.findByMatricule(abstractProcessInput.getEmploye().getMatricule());
-        CategoriePojo category = categorieInfra.findByLibelle(abstractProcessInput.getLibelleCategorie());
+        EmployePojo employe = abstractProcessInput.getEmploye();
+        CategoriePojo category = null;
+        if(abstractProcessInput.getEmploye().getCategorie().getId() == null){
+            category = categorieInfra.save(employe.getCategorie());
+        }else{
+            category = categorieInfra.findByLibelle(employe.getCategorie().getLibelle());
+        }
         employe.setCategorie(category);
-        employeInfra.save(employe);
+        EmployePojo savedEmploye =  employeInfra.save(employe);
         result.addInfoMessage("employe.create.employe_created");
+        result.setOutput(savedEmploye);
     }
 }
