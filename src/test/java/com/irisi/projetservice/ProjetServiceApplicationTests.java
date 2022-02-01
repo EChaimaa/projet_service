@@ -3,10 +3,10 @@ package com.irisi.projetservice;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ProjetServiceApplicationTests {
 
-    @Test
+//    @Test
     void contextLoads() {
     }
 
