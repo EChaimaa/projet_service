@@ -8,11 +8,13 @@ import com.irisi.projetservice.domain.projet.create.ProjectCreateInput;
 import com.irisi.projetservice.domain.projet.create.ProjectCreateProcess;
 import com.irisi.projetservice.domain.projet.delete.ProjectDeleteInput;
 import com.irisi.projetservice.domain.projet.delete.ProjectDeleteProcess;
+import com.irisi.projetservice.infra.entity.ProjetEntity;
 import com.irisi.projetservice.infra.facade.ProjetInfra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/gestion-projet/projets")
@@ -44,5 +46,10 @@ public class ProjetRest {
     @GetMapping("/{refProjet}")
     public ProjetPojo findByReference(@PathVariable String refProjet) {
         return projetInfra.findByReference(refProjet);
+    }
+
+    @GetMapping("/")
+    public List<ProjetEntity> findAll(){
+        return projetInfra.findAll();
     }
 }

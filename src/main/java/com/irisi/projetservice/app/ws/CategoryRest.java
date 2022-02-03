@@ -8,11 +8,13 @@ import com.irisi.projetservice.domain.category.delete.CategoryDeleteInput;
 import com.irisi.projetservice.domain.category.delete.CategoryDeleteProcess;
 import com.irisi.projetservice.domain.core.Result;
 import com.irisi.projetservice.domain.pojo.CategoriePojo;
+import com.irisi.projetservice.infra.entity.CategorieEntity;
 import com.irisi.projetservice.infra.facade.CategorieInfra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/gestion-projet/categories")
@@ -31,6 +33,11 @@ public class CategoryRest {
         CategoryCreateInput categoryCreateInput = new CategoryCreateInput();
         categoryCreateInput.setCategoriePojo(categorie);
         return categoryCreateProcess.execute(categoryCreateInput);
+    }
+
+    @GetMapping("/")
+    public List<CategorieEntity> findAll(){
+        return categorieInfra.findAll();
     }
 
     @Transactional

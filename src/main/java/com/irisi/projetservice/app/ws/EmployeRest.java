@@ -8,12 +8,13 @@ import com.irisi.projetservice.domain.employe.create.EmployeCreateProcess;
 import com.irisi.projetservice.domain.employe.delete.EmployeDeleteInput;
 import com.irisi.projetservice.domain.employe.delete.EmployeDeleteProcess;
 import com.irisi.projetservice.domain.pojo.EmployePojo;
-import com.irisi.projetservice.domain.projectMember.delete.ProjetMemberDeleteInput;
+import com.irisi.projetservice.infra.entity.EmployeEntity;
 import com.irisi.projetservice.infra.facade.EmployeInfra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/gestion-projet/employes")
@@ -32,6 +33,11 @@ public class EmployeRest {
         EmployeCreateInput employeCreateInput = new EmployeCreateInput();
         employeCreateInput.setEmploye(employe);
         return employeCreateProcess.execute(employeCreateInput);
+    }
+
+    @GetMapping("/")
+    public List<EmployeEntity> findAll(){
+        return employeInfra.findAll();
     }
 
     @Transactional

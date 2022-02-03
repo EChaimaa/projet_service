@@ -13,6 +13,7 @@ import com.irisi.projetservice.domain.projectMember.delete.ProjetMemberDeleteInp
 import com.irisi.projetservice.domain.projectMember.delete.ProjetMemberDeleteProcess;
 import com.irisi.projetservice.domain.projectMember.update.ProjectMemberUpdateInput;
 import com.irisi.projetservice.domain.projectMember.update.ProjectMemberUpdateProcess;
+import com.irisi.projetservice.infra.entity.ProjetMemberEntity;
 import com.irisi.projetservice.infra.facade.ProjetMemberInfra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,5 +63,9 @@ public class ProjetMemberRest {
     @GetMapping("/{refProjet}")
     public List<ProjetMemberPojo> findProjetMembersByProject(@PathVariable String refProjet){
         return projetMemberInfra.findByProjet(refProjet);
+    }
+    @GetMapping("/")
+    public List<ProjetMemberEntity> findAll(){
+        return projetMemberInfra.findAll();
     }
 }
